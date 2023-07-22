@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:id="@+id/drawerlayout_read"
+    tools:context=".ReadbookActivity"
+    android:orientation="vertical">
+
+<!-- 主视图 -->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--  txtview测试完跳转就删  -->
+<!--    <TextView-->
+<!--        android:id="@+id/read_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"/>-->
+<!--删除txtview后恢复viewpage-->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/read1_viewpage2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+<!--  顶部  -->
+    <LinearLayout
+        android:id="@+id/read_top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/read_bottom"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+    <TextView
+        android:id="@+id/read_return"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/returnshelf"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:drawablePadding="10dp"
+        app:drawableLeftCompat="@drawable/baseline_chevron_left_24" />
+    <ImageView
+        android:id="@+id/read_bookmark"
+        android:layout_gravity="center"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/bookmark_border_24"
+        android:layout_marginLeft="120dp"/>
+        <ImageView
+            android:id="@+id/read_booknote"
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/note1"
+            android:layout_marginLeft="20dp"
+        />
+    </LinearLayout>
+<!-- 底部设置   -->
+    <LinearLayout
+        android:id="@+id/read_bottom_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="@color/read_bottom"
+        android:visibility="gone"
+        tools:visibility="visible">
+        <TextView
+            android:id="@+id/read_catalog"
+            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="@string/catalog"
+            android:textColor="@color/white"
+            app:drawableTopCompat="@mipmap/catalog" />
+
+        <TextView
+            android:id="@+id/read_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text="@string/setting"
+            android:textColor="@color/white"
+            app:drawableTopCompat="@mipmap/readsetting" />
+
+    </LinearLayout>
+</RelativeLayout>
+<!--  侧滑菜单  -->
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/read_bottom"
+
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/catalog"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <ListView
+            android:id="@+id/read_iv_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+    </LinearLayout>
+</LinearLayout>

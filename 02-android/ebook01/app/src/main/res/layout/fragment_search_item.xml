@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/search_item"
+    android:background="@drawable/bookshelfitem">
+    <TextView
+        android:id="@+id/search_bookname"
+        android:layout_width="match_parent"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:text="我是书名"
+        android:maxLines="2"
+        android:paddingLeft="20dp"
+        android:ellipsize="end"
+        android:layout_height="40dp"/>
+    <TextView
+        android:id="@+id/search_bookauthor"
+        android:layout_width="match_parent"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:text="我是作者"
+        android:paddingLeft="20dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_height="40dp"/>
+</LinearLayout>

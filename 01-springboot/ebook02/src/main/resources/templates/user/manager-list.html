@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/title.css}">
+    <link rel="stylesheet" th:href="@{/css/addfrom.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- 图标 -->
+    <link rel="stylesheet" href="//code.z01.com/v4/dist/css/zico.min.css" />
+    <meta charset="UTF-8">
+    <title>管理员列表</title>
+</head>
+<body>
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">管理员列表</span>
+</div>
+<div style="background-color: #FCF8E3; height: 50px;width: 100%;">
+    <form th:action="@{/user/searchadmin}" method="post">
+        <div class="input-group input-search seach-icon">
+            <input type="text" placeholder="输入用户名或用户序号" class="form-control" id="keyword" name="keyword"/>
+            <div class="input-group-append">
+                <button class="input-group-text btn-success" type="submit"><i class="zi zi_search" zico="搜索"></i></button>
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-success" style="margin-left: 20px;margin-top: 5px;" onclick="toreturn()">返回</button>
+</div>
+
+<!-- 表格部分 -->
+<div>
+    <table class="table table-bordered">
+        <thead class="table-thread">
+        <tr align="center">
+            <th>序号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>用户状态</th>
+            <th>积分</th>
+        </tr>
+        </thead>
+        <tbody align="center" >
+        <tr th:each="manager : ${managerList}">
+            <td th:text="${manager.managerId}"></td>
+            <td th:text="${manager.managerName}"></td>
+            <td th:text="${manager.managerPassword}"></td>
+            <td th:text="${manager.managerState}"></td>
+            <td th:text="${manager.managerPoint}"></td>
+        </tr>
+        <tr th:if="${managerList==null}">
+            <td th:text="${msg}"></td>
+        </tr>
+        </tbody>
+    </table>
+    </table>
+</div>
+<!-- 页数 -->
+<div style="height: 40px;width: 100%;">
+    <ul id="page" class="pagination justify-content-center" th:if="${pageInfo!=null}">
+        <li class="page-item">
+            <a class="page-link" th:href="@{/user/adminlist(pageNum=${pageInfo.prePage})}">Previous</a>
+        </li>
+        <li th:each="page:${pageInfo.getNavigatepageNums()}" th:class="${pageInfo.pageNum==page?'page-item active':''}">
+            <a class="page-link" th:href="@{/user/adminlist(pageNum=${page})}">[[${page}]]</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" th:href="@{/user/adminlist(pageNum=${pageInfo.nextPage})}">Next</a>
+        </li>
+    </ul>
+</div>
+</body>
+<script th:inline="javascript">
+    function toreturn() {
+        window.history.back();
+    }
+</script>
+</html>

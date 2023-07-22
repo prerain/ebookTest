@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/title.css}">
+    <link rel="stylesheet" th:href="@{/css/addfrom.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>普通用户信息</title>
+</head>
+<body>
+<!-- 头部 -->
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">普通用户信息查看与修改</span>
+</div>
+<!-- 内容 -->
+<div class="container shadow">
+    <form th:action="@{/user/update}" method="post">
+        <!-- 单行设置 -->
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">用户账号</p></div>
+            <input type="text" class="form-control form-input" id="userid" name="userId" th:value="${user.userId}" readonly/>
+        </div>
+<!--        <div class="form-group">-->
+<!--            <div class="left"><span class="required">*</span><p class="subtitle">用户头像</p></div>-->
+<!--            <input type="text" class="form-control form-input" id="userpicture" name="userPicture" th:value="${user.userPicture}" readonly/>-->
+<!--        </div>-->
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">用户名</p></div>
+            <input type="text" class="form-control form-input" id="username" name="userName" th:value="${user.userName}" readonly/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">密码</p></div>
+            <input type="text" class="form-control form-input" id="password" name="userPassword" th:value="${user.userPassword}" readonly/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">用户积分</p></div>
+            <input type="text" class="form-control form-input" id="userpoint" name="userPoint" th:value="${user.userPoint}" readonly/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">用户状态</p>
+                <p style="color: #999999">请输入3(表示正常)或4(表示禁用)</p>
+            </div>
+            <input type="text" class="form-control form-input" id="userstate" name="userState" th:value="${user.userState}"/>
+        </div>
+        <div class="form-group">
+            <p th:text="${msg}"style="color: red"></p>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="form-group btn-li">
+            <button type="submit" id="send" class="btn btn-outline-success btn-type" onclick="return checkform()">提交</button>
+            <button type="reset" class="btn btn-outline-secondary btn-type">重置</button>
+            <button  class="btn btn-outline-info btn-type" onclick="toreturn()">返回</button>
+        </div>
+    </form>
+    </div>
+</body>
+<script th:inline="javascript">
+    function toreturn() {
+        console.log("return");
+        window.history.back();
+    }
+    function checkform() {
+        var userpoint =  $("#userpoint").val();
+        var userstate =  $("#userstate").val();
+        if(userpoint==="" || userstate===""){
+            if (userpoint==="") {
+                alert("用户积分不能为空")
+            } else if (userstate==="") {
+                alert("用户状态不能为空")
+            }
+            return false
+        }else {
+            return true;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.BookMapper">
+    <resultMap id="BookrMap" type="Book">
+        <id column="bookId" property="bookId"/>
+        <result column="bookName" property="bookName"/>
+        <result column="bookAuthor" property="bookAuthor"/>
+        <result column="bookPrice" property="bookPrice"/>
+        <result column="bookDetalis" property="bookDetalis"/>
+        <result column="bookPath" property="bookPath"/>
+    </resultMap>
+    <select id="findAll" resultType="Book">
+        select * from book
+    </select>
+    <select id="findBookList" resultType="Book">
+        select * from book where bookName like CONCAT('%',#{keyword},'%') or bookAuthor like CONCAT('%',#{keyword},'%')
+    </select>
+    <select id="findbyId" resultType="Book">
+        select * from book where bookId = #{bookId}
+    </select>
+    <insert id="addBook" parameterType="Book">
+        insert into book (bookName,bookAuthor,bookPrice,bookDetalis,bookPath)
+        values (#{bookName},#{bookAuthor},#{bookPrice},#{bookDetalis},#{bookPath})
+    </insert>
+    <delete id="deleteBook">
+        delete from book where bookId =#{bookId}
+    </delete>
+    <update id="updateBook" parameterType="Book">
+        update book
+        <set>
+            <if test="bookName != null and bookName != ''">
+                bookName = #{bookName},
+            </if>
+            <if test="bookAuthor != null and bookAuthor != ''">
+                bookAuthor = #{bookAuthor},
+            </if>
+            <if test="bookDetalis != null and bookDetalis != ''">
+                bookDetalis = #{bookDetalis},
+            </if>
+            <if test="bookPrice != null">
+                bookPrice = #{bookPrice},
+            </if>
+        </set>
+        where bookId = #{bookId}
+    </update>
+</mapper>

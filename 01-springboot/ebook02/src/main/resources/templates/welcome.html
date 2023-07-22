@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/title.css}">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script th:href="@{/js/bootstrap.min.js}"></script>
+<script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>欢迎页</title>
+</head>
+<body>
+<!-- 头部 -->
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">功能介绍</span>
+</div>
+<!-- 内容 -->
+<div class="container">
+    <div class="card bg-info text-white shadow" style="display: flex;width: 450px;float: left;margin-top: 60px;">
+        <div class="card-body">
+            <h4 class="card-title">用户</h4>
+            <p class="card-text">用户列表：包括普通用户列表和管理员列表</p>
+            <p class="card-text">用户信息修改：对普通用户的信息进行修改</p>
+        </div>
+    </div>
+    <div class="card bg-info text-white shadow" style="display: flex;width: 450px;float: right;margin-top: 60px;">
+        <div class="card-body">
+            <h4 class="card-title">公告</h4>
+            <p class="card-text">公告列表：查看过往发布的公告信息</p>
+            <p class="card-text">公告发布：根据需要发布公告到app</p>
+        </div>
+    </div>
+    <div class="card bg-info text-white shadow" style="display: flex;width: 450px;float: left;margin-top: 60px;">
+        <div class="card-body">
+            <h4 class="card-title">书籍</h4>
+            <p class="card-text">书籍列表：查看已存在的书籍信息</p>
+            <p class="card-text">添加书籍：上传书籍</p>
+        </div>
+    </div>
+    <div class="card bg-info text-white shadow" style="display: flex;width: 450px;float: right;margin-top: 60px;">
+        <div class="card-body">
+            <h4 class="card-title">谢谢使用</h4>
+            <p class="card-text">点击标签前往其它页面</p>
+            <p class="card-text">还有其它问题请咨询XXXX@ssb.com</p>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

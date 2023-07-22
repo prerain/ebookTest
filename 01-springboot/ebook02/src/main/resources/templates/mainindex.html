@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 左侧菜单的刷新没写完 -->
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- 图标 -->
+    <link rel="stylesheet" href="//code.z01.com/v4/dist/css/zico.min.css" >
+    <!--自适应 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>折叠菜单测试后台管理</title>
+</head>
+<style>
+    a{color: #FFFFFF;}
+    body{background-color: #FCF8E3;}
+    .nav-conent{width: 100%;height: 40px;background-color: #8cd98c;position: absolute;;left: 0;right: 0;top: 0;}
+    .nav-title{color: #FFFFFF;line-height: 40px;font-size: 16px;padding: 0 20px;float: left;font-weight: 500;}
+    .nav-user{float: right;display: block;position: relative;padding: 0 15px;height: 40px;line-height: 40px;right: 80px;}
+    .nav-username{color: #FFFFFF;}
+    .content{position: absolute;top: 50px;bottom: 0;left: 0;right: 0;}
+    .left-content{float: left;width: 230px;height: 100%;float: left;position: relative;}
+    .menu-list{background-color: #91cfa1;color: #FFFFFF;}
+    .menu-list-li{color: #FFFFFF; padding-left: 40px;padding-top: 5px;}
+    .menu-icon{color: #FFFFFF;margin-right: 15px;}
+    .right-content{float: right;overflow: auto;height: 100%;width: 80%;position: relative;}
+    .right-content iframe{width: 100%;height: 100%;border: 0;margin: 0;padding: 0;}
+</style>
+<body>
+<!-- 导航栏 -->
+<div id="nav">
+    <div class="nav-conent">
+        <!--左边-logo名称-->
+        <div class="nav-title">ebook后台管理<i class="zi zi_leaf" style="color: #FFFFFF;padding-left: 5px;" zico="叶子"></i></div>
+        <!-- 右边 -->
+        <div class="nav-user">
+            <div class="nav-username">欢迎您，
+                <span id="login_user" th:text="${session.manager.getManagerName()}"></span>
+                <a th:href="@{/loginOut}">[注销]</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 内容 -->
+<div class="content">
+    <!-- 左侧菜单 -->
+    <div class="left-content">
+        <!-- 可选择菜单 -->
+        <div id="accordion">
+            <ul class="list-group  ">
+                <li class="list-group-item menu-list"><a href="#"id="home"><i class="zi zi_home menu-icon" zico="家"></i>首页</a></li>
+                <li class="list-group-item menu-list"><i class="zi zi_squareBook menu-icon"></i>公告管理</a>
+                    <ul id="linkOne" class="list-unstyled">
+                        <li class="menu-list-li"><a href="#" id="noticelist">公告列表</a></li>
+                        <li class="menu-list-li"><a href="#"id="notice-add">发布公告</a></li>
+                    </ul>
+                </li>
+                <!--用户管理-->
+                <li class="list-group-item menu-list" ><i class="zi zi_useredit menu-icon" zico="用户编辑"></i>用户管理</a>
+                    <ul id="linkTwo" class="list-unstyled">
+                        <li class="menu-list-li"><a href="#"id="user-list">用户列表</a></li>
+                        <li class="menu-list-li"><a href="#"id="adminuser-list">管理员列表</a></li>
+                    </ul>
+                </li>
+                <li class="list-group-item menu-list"><i class="zi zi_textbook menu-icon"></i>书籍管理</a>
+                    <ul id="linkThree" class="list-unstyled">
+                        <li class="menu-list-li"><a href="#"id="book-list">书籍列表</a></li>
+                        <li class="menu-list-li"><a href="#"id="book-add">添加书籍</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 右侧iframe显示网页 -->
+    <div class="right-content">
+        <iframe id="page" src="/welcome"></iframe>
+    </div>
+</div>
+</body>
+<!--已经尝试写写法  welcome.html  notice/notice-list   notice/notice-add.html-->
+<!--成功/welcome-->
+<!--一个很离谱的问题，同样写法同一级目录，就welcome可以-->
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $("#home").click(function(){
+            $("#page").attr("src","/welcome");
+        })
+        $("#noticelist").click(function(){
+            $("#page").attr("src","notice/list");
+            console.log("noticelist Test")
+        })
+        $("#notice-add").click(function(){
+            $("#page").attr("src","notice/add");
+            console.log("notice-add")
+        })
+        $("#user-list").click(function(){
+            $("#page").attr("src","user/userlist");
+            console.log("user-list")
+        })
+        $("#adminuser-list").click(function(){
+            $("#page").attr("src","user/adminlist");
+            console.log("manager-list")
+        })
+        $("#book-list").click(function(){
+            $("#page").attr("src","book/list");
+            console.log("book-list")
+        })
+        $("#book-add").click(function(){
+            $("#page").attr("src","book/add");
+            console.log("book-add")
+        })
+    })
+
+</script>
+</html>

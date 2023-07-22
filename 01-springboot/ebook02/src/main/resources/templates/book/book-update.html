@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/title.css}">
+    <link rel="stylesheet" th:href="@{/css/addfrom.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>书籍信息</title>
+</head>
+<body>
+<!-- 头部 -->
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">书籍信息查看与修改</span>
+</div>
+<!-- 内容 -->
+<div class="container shadow">
+    <form id="form" th:action="@{/book/update}" method="post">
+        <!-- 单行设置 -->
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">序号</p></div>
+            <input type="text" class="form-control form-input" id="bookId" name="bookId" th:value="${book.bookId}" readonly/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">书名</p></div>
+            <input type="text" class="form-control form-input" id="bookName" name="bookName" th:value="${book.bookName}"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">作者</p></div>
+            <input type="text" class="form-control form-input" id="bookAuthor" name="bookAuthor" th:value="${book.bookAuthor}"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">售价</p></div>
+            <input type="text" class="form-control form-input" id="bookPrice" name="bookPrice" th:value="${book.bookPrice}"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">保存路径</p></div>
+            <input type="text" class="form-control form-input" id="bookPath" name="bookPath" th:value="${book.bookPath}" readonly/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">简介</p></div>
+            <textarea class="form-control" rows="5" id="bookDetalis" name="bookDetalis" th:text="${book.bookDetalis}"></textarea>
+        </div>
+        <div class="form-group">
+            <p th:text="${msg}"style="color: red"></p>
+        </div>
+        <!-- 按钮 -->
+        <div class="form-group btn-li">
+            <button type="submit" id="send" class="btn btn-outline-success btn-type" >提交</button>
+            <button type="reset" class="btn btn-outline-secondary btn-type">重置</button>
+            <button  class="btn btn-outline-info btn-type" onclick="toreturn()">返回</button>
+        </div>
+    </form>
+    </div>
+</body>
+<script th:inline="javascript">
+    function toreturn() {
+        window.history.back();
+    }
+</script>
+</html>

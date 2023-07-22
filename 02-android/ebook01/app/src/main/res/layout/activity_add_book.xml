@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBookActivity">
+<!--  顶部  -->
+<LinearLayout
+    android:id="@+id/addbook_top"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/btn">
+    <ImageButton
+        android:id="@+id/addbook_btn_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_chevron_left_24"/>
+<TextView
+    android:id="@+id/addbook_filepath"
+    android:layout_marginLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:maxLines="1"
+    android:ellipsize="end"
+    android:textStyle="bold"/>
+</LinearLayout>
+<!--  显示的部分  -->
+    <ListView
+        android:id="@+id/addbook_lv_file"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/btnpress"
+        android:dividerHeight="1dp"
+        android:layout_below="@id/addbook_top"
+        android:layout_above="@id/addbook_btn_add"
+        tools:listitem="@layout/addbook_listitem" />
+<!--  底部  -->
+    <Button
+        android:id="@+id/addbook_btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/addtoshelf"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:background="@drawable/selector_btnchange"/>
+
+</RelativeLayout>

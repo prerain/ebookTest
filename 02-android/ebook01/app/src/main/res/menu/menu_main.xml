@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.eread.MainActivity">
+    <item
+        android:id="@+id/bookshelfFragment"
+        android:title="@string/bookshelf"
+        android:icon="@mipmap/bookshelf"/>
+
+    <item android:id="@+id/searchFragment"
+        android:title="@string/search"
+        android:icon="@mipmap/notice"/>
+
+    <item android:id="@+id/personFragment"
+        android:title="@string/person"
+        android:icon="@mipmap/person"/>
+</menu>

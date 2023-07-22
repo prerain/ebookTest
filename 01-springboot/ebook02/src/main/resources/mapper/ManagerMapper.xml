@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.ManagerMapper">
+
+<resultMap id="ManagerMap" type="Manager">
+    <id column="managerId" property="managerId"/>
+    <result column="managerName" property="managerName"/>
+    <result column="managerPassword" property="managerPassword"/>
+    <result column="managerState" property="managerState"/>
+    <result column="managerPoint" property="managerPoint"/>
+</resultMap>
+    <select id="findAll" resultMap="ManagerMap" >
+       select * from manager
+    </select>
+    <select id="findByManagername" resultMap="ManagerMap" resultType="Manager">
+        select * from manager where managerName = #{managerName}
+    </select>
+    <select id="findBykeyword" resultMap="ManagerMap" resultType="Manager">
+        select * from manager where managerName like CONCAT('%',#{keyword},'%') or managerId = #{keyword}
+    </select>
+</mapper>

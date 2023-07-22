@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/title.css}">
+    <link rel="stylesheet" th:href="@{/css/addfrom.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>添加书籍</title>
+</head>
+<body>
+<!-- 头部 -->
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">添加书籍</span>
+</div>
+<!-- 内容 -->
+<div class="container shadow">
+    <form id="form" th:href="@{/book/add}" method="post" enctype="multipart/form-data">
+        <!-- 单行设置 -->
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">书名</p></div>
+            <input type="text" class="form-control form-input" id="bookName" name="bookName"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">作者</p></div>
+            <input type="text" class="form-control form-input" id="bookAuthor" name="bookAuthor"/>
+        </div>
+        <div class="form-group" style="width: 300px;display: inline-block;">
+            <div class="left"><span class="required">*</span><p class="subtitle">售价</p></div>
+            <input type="text" class="form-control form-input" style="width: 200px;" id="bookPrice" name="bookPrice"/>
+        </div>
+        <div class="form-group" style="width: 300px;display: inline-block;">
+            <div class="left"><span class="required">*</span><p class="subtitle">文件上传</p>
+                <p style="color: #999999">仅支持单文件上传--文件名请不要重复</p>
+            </div>
+            <input type="file" id="file" name="file"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">详情</p></div>
+            <textarea class="form-control" rows="5" id="bookDetalis" name="bookDetalis"></textarea>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="form-group btn-li">
+            <button type="submit" id="send" class="btn btn-outline-success btn-type" >提交</button>
+            <button type="reset" class="btn btn-outline-secondary btn-type">重置</button>
+        </div>
+    </form>
+    </div>
+</body>
+</html>

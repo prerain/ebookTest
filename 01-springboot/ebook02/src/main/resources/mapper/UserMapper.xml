@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.UserMapper">
+    <resultMap id="UserMapper" type="User">
+        <id column="userId" property="userId"/>
+        <result column="userName" property="userName"/>
+        <result column="userPassword" property="userPassword"/>
+        <result column="userState" property="userState"/>
+        <result column="userPoint" property="userPoint"/>
+    </resultMap>
+    <select id="findAll" resultMap="UserMapper" resultType="User">
+        select * from user
+    </select>
+    <select id="findBykeyword" resultMap="UserMapper" resultType="User">
+        select * from user where userName like CONCAT('%',#{keyword},'%') or userId = #{keyword}
+    </select>
+    <select id="findbyId" resultMap="UserMapper" resultType="User">
+        select * from user where userId =#{userId}
+    </select>
+    <update id="updateUser" parameterType="User">
+        update user
+        <set>
+        <if test="userState != null and userState != ''">
+            userState = #{userState},
+        </if>
+        </set>
+     where userId = #{userId}
+    </update>
+    <select id="findByUsername" resultType="User">
+        select * from user where userName =#{userName}
+    </select>
+    <insert id="addUser" parameterType="User">
+        insert into user (userName,userPassword,userState,userPoint)
+        values (#{userName},#{userPassword},#{userState},#{userPoint});
+    </insert>
+</mapper>

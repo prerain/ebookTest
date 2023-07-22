@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/title.css}">
+    <link rel="stylesheet" th:href="@{/css/addfrom.css}">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/bootstrap.bundle.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>发布公告</title>
+</head>
+<body >
+<!-- 头部 -->
+<div style="height: 40px;width: 100%;background-color: #8cd98c;">
+    <span class="head-title">发布公告</span>
+</div>
+<!-- 内容 -->
+<div class="container shadow">
+    <form id="form" th:href="@{/notice/add}" method="post">
+        <!-- 单行设置 -->
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">标题</p></div>
+            <input type="text" class="form-control form-input" id="noticeTitle" name="noticeTitle"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">发布人</p></div>
+            <input type="text" class="form-control form-input" id="noticeAuthor" name="noticeAuthor" th:value="${session.manager.getManagerName()}"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">发布时间</p></div>
+            <input type="date" class="form-control form-input" id="noticeDate" name="noticeDate"/>
+        </div>
+        <div class="form-group">
+            <div class="left"><span class="required">*</span><p class="subtitle">发布内容</p></div>
+            <textarea class="form-control" rows="5" id="noticeContent" name="noticeContent"></textarea>
+        </div>
+
+        <!-- 按钮 -->
+        <div class="form-group btn-li">
+            <button type="submit" id="send" class="btn btn-outline-success btn-type" >提交</button>
+            <button type="reset" class="btn btn-outline-secondary btn-type">重置</button>
+        </div>
+    </form>
+
+</div>
+</body>
+<script th:inline="javascript">
+
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Eread</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- 自定义 -->
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="tologin">已有账号去登录</string>
+    <string name="toregister">没有账号去注册</string>
+    <string name="bookshelf">书架</string>
+    <string name="notice">公告</string>
+    <string name="person">我的</string>
+    <string name="search">搜索</string>
+    <string name="searchbook">请输入书名或作者</string>
+    <string name="shelfmanage">书架管理</string>
+    <string name="setting">设置</string>
+    <string name="inputname">请输入名称</string>
+    <string name="submit">提交</string>
+    <string name="returnshelf">返回书架</string>
+    <string name="exit">退出登录</string>
+    <string name="catalog">目录</string>
+    <string name="mark">书签</string>
+    <string name="note">笔记</string>
+    <string name="addtoshelf">添加到书架</string>
+    <string name="addshelf">添加书架</string>
+    <string name="updateshelf">修改书架</string>
+    <string name="inputnote">请输入笔记</string>
+    <string name="notetitle">笔记名称</string>
+
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_bookshelf">bookshelf</string>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="vertical"
+    android:background="@color/read_bottom"
+    android:id="@+id/noteList_item">
+
+    <TextView
+        android:id="@+id/noteList_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="一二三四五六"
+        android:textColor="@color/item_foucus"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"/>
+</LinearLayout>
