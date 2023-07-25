@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ebook01.dao.BookDao;
+import com.example.ebook01.dao.BookDaoImpl;
+import com.example.ebook01.dao.IBookDao;
 import com.example.ebook01.entity.Book;
 
 import java.io.File;
@@ -44,7 +46,7 @@ public class AddBookActivity extends AppCompatActivity {
     int shelfId;
     String name,path;
     SimpleAdapter simpleAdapter;
-    BookDao bookDao;
+    IBookDao bookDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class AddBookActivity extends AppCompatActivity {
         addbtn = findViewById(R.id.addbook_btn_add);
         Intent intent = getIntent();
         shelfId = intent.getIntExtra("shelfId",0);
-        bookDao = new BookDao(AddBookActivity.this);
+        bookDao = new BookDaoImpl(this);
         //ListView多选模式
         fileshow.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         bookList = new ArrayList<>();

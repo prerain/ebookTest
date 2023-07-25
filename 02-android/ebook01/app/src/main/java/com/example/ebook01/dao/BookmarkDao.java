@@ -19,7 +19,7 @@ public class BookmarkDao {
     private final SqliteUtil sqlutil;
 
     public BookmarkDao(Context context) {
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
     public int addMark(Bookmark bookmark){

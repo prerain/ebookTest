@@ -16,7 +16,7 @@ public class BookshelfDao {
     private SQLiteDatabase db;
     private final SqliteUtil sqlutil;
     public BookshelfDao(Context context){
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
     //添加

@@ -16,7 +16,7 @@ public class NovelContentPageDao {
     public static String  TABLE_NAME = "chapter";
 
     public NovelContentPageDao(Context context) {
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
 

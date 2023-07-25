@@ -4,30 +4,69 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
 
 import com.example.ebook01.entity.Book;
-import com.example.ebook01.entity.Bookshelf;
 import com.example.ebook01.utils.SqliteUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDao {
+public class BookDaoImpl implements IBookDao{
+    SqliteUtil sqliteUtil;
 
-    //还有需要调整的部分,暂时这样
-    private SQLiteDatabase db;
-    private final SqliteUtil sqlutil;
-
-
-
-    public BookDao(Context context) {
-        sqlutil = SqliteUtil.getInstance(context);
+    public BookDaoImpl(Context ctx){
+        sqliteUtil = SqliteUtil.getInstance(ctx);
     }
-    //添加书籍  在外面写的时候可以考虑多加一个id
-    public void addBook(List<Book> books) {
+    @Override
+    public void add(Book book) {
 
+    }
+
+    @Override
+    public int del(Book book) {
+        SQLiteDatabase db = sqliteUtil.getWritableDatabase();
+        int delete = db.delete("book", "bookId" + "=?", new String[]{String.valueOf(book.getBookId())});
+        db.close();
+        return delete;
+    }
+
+    @Override
+    public int update(Book book) {
+        return 0;
+    }
+
+    @Override
+    public Book find(Book book) {
+        if (book == null) return null;
+        SQLiteDatabase db = sqliteUtil.getWritableDatabase();
+        String sql = "SELECT * FROM book WHERE bookId = ?";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(book.getBookId())});
+        int idIndex = cursor.getColumnIndex("bookId");
+        int nameIndex = cursor.getColumnIndex("bookName");
+        int authorIndex = cursor.getColumnIndex("bookAuthor");
+        int detailIndex = cursor.getColumnIndex("bookDetalis");
+        int pathIndex = cursor.getColumnIndex("bookPath");
+        int shelfIdIndex = cursor.getColumnIndex("shelfId");
+        int sourceIndex = cursor.getColumnIndex("source");
+        if (cursor.moveToFirst()){
+            book.setBookId(cursor.getInt(idIndex));
+            book.setBookName(cursor.getString(nameIndex));
+            book.setBookAuthor(cursor.getString(authorIndex));
+            book.setBookDetalis(cursor.getString(detailIndex));
+            book.setBookPath(cursor.getString(pathIndex));
+            book.setShelfId(cursor.getInt(shelfIdIndex));
+            book.setSource(cursor.getString(sourceIndex));
+        }
+        cursor.close();
+        db.close();
+        return book;
+    }
+
+    @Override
+    public void addBook(List<Book> books) {
         // 获取数据库对象
-        db = sqlutil.getWritableDatabase();
+        SQLiteDatabase db = sqliteUtil.getWritableDatabase();
         // 开始插入
         db.beginTransaction();
         try {
@@ -49,20 +88,12 @@ public class BookDao {
             db.close();
         }
     }
-    //删除书籍
-    public int delBook(Book book){
-        db = sqlutil.getWritableDatabase();
-        int delete = db.delete("book", "bookId" + "=?", new String[]{String.valueOf(book.getBookId())});
-        db.close();
-        if (delete==0){
-            return 0;
-        }
-        return 1;
-    }
+
     //查询书籍(某个书架中的)
-    public List<Book> findbooklist(int shelfId){
+    @Override
+    public List<Book> findBookList(int shelfId){
         List<Book> bookList = new ArrayList<>();
-        db = sqlutil.getReadableDatabase();
+        SQLiteDatabase db = sqliteUtil.getWritableDatabase();
         String sql = "SELECT * FROM book WHERE shelfId = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(shelfId)});
         int idIndex = cursor.getColumnIndex("bookId");
@@ -81,9 +112,11 @@ public class BookDao {
         db.close();
         return bookList;
     }
-    public List<Book> findBookByname(String bookName){
+
+    @Override
+    public List<Book> findBookByName(String bookName){
         List<Book> bookList = new ArrayList<>();
-        db = sqlutil.getReadableDatabase();
+        SQLiteDatabase db = sqliteUtil.getWritableDatabase();
         String sql = "SELECT * FROM book WHERE bookName = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{bookName});
         int idIndex = cursor.getColumnIndex("bookId");
@@ -108,29 +141,11 @@ public class BookDao {
         db.close();
         return bookList;
     }
-    public Book findBookByid(int bookid){
-        Book book =new Book();
-        db = sqlutil.getReadableDatabase();
-        String sql = "SELECT * FROM book WHERE bookId = ?";
-        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(bookid)});
-        int idIndex = cursor.getColumnIndex("bookId");
-        int nameIndex = cursor.getColumnIndex("bookName");
-        int authorIndex = cursor.getColumnIndex("bookAuthor");
-        int detailIndex = cursor.getColumnIndex("bookDetalis");
-        int pathIndex = cursor.getColumnIndex("bookPath");
-        int shelfIdIndex = cursor.getColumnIndex("shelfId");
-        int sourceIndex = cursor.getColumnIndex("source");
-        if (cursor.moveToFirst()){
-            book.setBookId(cursor.getInt(idIndex));
-            book.setBookName(cursor.getString(nameIndex));
-            book.setBookAuthor(cursor.getString(authorIndex));
-            book.setBookDetalis(cursor.getString(detailIndex));
-            book.setBookPath(cursor.getString(pathIndex));
-            book.setShelfId(cursor.getInt(shelfIdIndex));
-            book.setSource(cursor.getString(sourceIndex));
-        }
-        cursor.close();
-        db.close();
-        return book;
+
+    @Override
+    public Book findBookById(int bookId){
+        Book book = new Book();
+        book.setBookId(bookId);
+        return find(book);
     }
 }

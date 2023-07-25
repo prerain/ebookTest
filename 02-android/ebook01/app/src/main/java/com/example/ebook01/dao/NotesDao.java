@@ -19,7 +19,7 @@ public class NotesDao {
 
     public static String  TABLE_NAME = "booknote";
     public NotesDao(Context context) {
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
     public int addNote(Notes notes, int bookId){

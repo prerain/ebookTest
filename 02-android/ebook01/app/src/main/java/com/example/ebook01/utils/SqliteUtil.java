@@ -1,16 +1,24 @@
 package com.example.ebook01.utils;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.ebook01.entity.User;
-
 public class SqliteUtil extends SQLiteOpenHelper {
+    private volatile static SqliteUtil INSTANCE;
+    public static SqliteUtil getInstance(Context context){
+        if (INSTANCE == null){
+            synchronized (SqliteUtil.class){
+                if (INSTANCE == null){
+                    INSTANCE = new SqliteUtil(context.getApplicationContext());
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     public static final String dataBaseName = "ebook01.db";
     public static final int dataBaseVersion = 1;
     public static final String create_user= "create table user ("
@@ -50,7 +58,7 @@ public class SqliteUtil extends SQLiteOpenHelper {
             + "belong_to_chapID int, "
             + "isTempPage2 int, "
             + "bookId integer)";
-    public SqliteUtil(@Nullable Context context) {
+    private SqliteUtil(@Nullable Context context) {
         super(context, dataBaseName, null, dataBaseVersion);
     }
 

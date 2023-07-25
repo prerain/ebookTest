@@ -17,7 +17,7 @@ public class ChapterDao {
     public static String  TABLE_NAME = "chapter";
 
     public ChapterDao(Context context) {
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
     public List<Chapter> chapFindAll(int bookId){

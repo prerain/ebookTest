@@ -16,7 +16,7 @@ public class UserDao {
     private final SqliteUtil sqlutil;
 
     public UserDao(Context context) {
-        sqlutil = new SqliteUtil(context);
+        sqlutil = SqliteUtil.getInstance(context);
     }
 
     public int addUser(User user){
